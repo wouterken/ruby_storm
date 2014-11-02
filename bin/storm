@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+module Storm
+  require './application/application'
+
+  def self.perform!(namespace, args=ARGV)
+    begin
+      names = namespace.to_s.split(':')
+      generator(names)
+      if klass = generator(names)
+        klass.start(args[1..-1])
+      else
+        puts "Could not find generator '#{names}'. "
+      end
+    rescue Exception => e
+      puts e.message
+      return 1
+    end
+    return 0
+  end
+
+  def self.generator(names)
+    generators_and_paths = names.map{|name|
+      [name.capitalize,name.downcase]
+    }
+    klass = "::"+generators_and_paths.map(&:first).join("::")
+    path = "./generators/#{generators_and_paths.map(&:last).join("/")}.rb"
+    if File.exists?(path)
+      require path
+      return eval(klass)
+    end
+  end
+end
+
+#!/usr/bin/env ruby
+exit Storm::perform!(ARGV[0])

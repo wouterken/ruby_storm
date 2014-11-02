@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "require './application/application'" >> .pryrc
+bundle exec pry
+rm .pryrc
