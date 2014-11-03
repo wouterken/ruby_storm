@@ -4,11 +4,11 @@ module Storm
   require File.expand_path("./../../application/application", __FILE__)
 
   def self.perform!(namespace, args=ARGV)
-    puts "Generation"
     begin
       names = namespace.to_s.split(':')
       generator(names)
       if klass = generator(names)
+        Dir["./*/*.rb"].each{|file| require file } if klass != Storm::Init
         klass.start(args[1..-1])
       else
         puts "Could not find generator '#{names}'. "

@@ -1,10 +1,9 @@
-require "./generators/db/migration_generator"
-module Storm
-  module Db
-    class Migrate < Storm::DBCommand
+module Storm::Db
+  class Migrate < Storm::DBCommand
+    def self.start *_
       self.connect
-      ActiveRecord::Migration.verbose = true
-      ActiveRecord::Migrator.migrate MIGRATIONS_DIR, VERSION.to_i
+      ::ActiveRecord::Migration.verbose = true
+      ::ActiveRecord::Migrator.migrate File.expand_path(Storm::MIGRATIONS_DIR), Storm::VERSION && Storm::VERSION.to_i
     end
   end
 end

@@ -1,16 +1,18 @@
-module Db
-  class Create
+module Storm::Db
+  class Create  < Storm::DBCommand
     def self.start(args)
       options = {:charset => 'utf8', :collation => 'utf8_unicode_ci'}
 
       create_db = lambda do |config|
         # drops and create need to be performed with a connection to the 'postgres' (system) database
-        ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
+        if config["adapter"] == 'postgres'
+          ::ActiveRecord::Base.establish_connection(config.merge('database' => 'postgres', 'schema_search_path' => 'public'))
+        end
         # drop the old database (if it exists)
-        ActiveRecord::Base.connection.drop_database config["database"] rescue nil
+        ::ActiveRecord::Base.connection.drop_database config["database"] rescue nil
         # create new
-        ActiveRecord::Base.connection.create_database(config["database"])
-        ActiveRecord::Base.establish_connection(config)
+        ::ActiveRecord::Base.connection.create_database(config["database"]) rescue nil
+        ::ActiveRecord::Base.establish_connection(config)
       end
 
       begin

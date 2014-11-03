@@ -1,0 +1,8 @@
+ ☐ Different Bundle.requires for storm and stormc.
+ ☐ Require packages for app and daemon. 'storm/app', 'storm/daemon'. Main class inherits from Storm::App or Storm::Daemon
+ ☐ generate and include gemfile in project dir
+ ☐ generate either daemon or app. (Both have gemfile and bin-dir)
+ ☐ Allow ENV VARS for migration dir, model dir
+ ☐ Create deploy procedure
+ ☐ ALlow splitting of dependencies into groups.
+ ☐ Release!

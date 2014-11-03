@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require File.expand_path("./../../application/application", __FILE__)
-
+Dir["./*/*.rb"].each{|file| require file }
 version = ">= 0"
 
 if ARGV.first

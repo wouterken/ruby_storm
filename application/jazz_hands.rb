@@ -1,3 +1,4 @@
+require File.expand_path("#{File.dirname(__FILE__)}/inflector")
 
 JazzHands.colored_prompt = true
 JazzHands.enable_syntax_highlighting_as_you_type!
@@ -24,7 +25,7 @@ blue = ->(text) { color[] ? "\001\e[0;34m\002#{text}\001\e[0m\002" : text.to_s }
 bold = ->(text) { color[] ? "\001\e[1m\002#{text}\001\e[0m\002"    : text.to_s }
 
 separator = -> { red.(JazzHands.prompt_separator) }
-name = defined?(APP_NAME) ? APP_NAME : "Application"
+name = defined?(APP_NAME) ? APP_NAME : Inflector::classify(File.basename(FileUtils.pwd))
 colored_name = -> { blue.(name) }
 
 line = ->(pry) { "[#{bold.(pry.input_array.size)}] " }

@@ -4,7 +4,6 @@ Gem::Specification.new do |s|
   s.name        = 'ruby_storm'
   s.version     = RubyStorm::VERSION
   s.date        = '2014-11-02'
-  s.executables = ['storm', 'stormc']
   s.summary     = "Ruby storm is a stand alone Object Relational Mapper"
   s.description = "Ruby storm is a stand alone Object Relational Mapper that wraps ActiveRecord."
   s.authors     = ["Wouter Coppieters"]
