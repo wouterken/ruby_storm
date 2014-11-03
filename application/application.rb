@@ -1,21 +1,20 @@
 # encoding: utf-8
-require 'rubygems'
-require 'bundler/setup'
-require 'pry'
-require 'active_record'
-require 'awesome_print'
-require 'hirb'
-require 'fileutils'
+#
 
-Dir["#{File.dirname(__FILE__)}/../*.rb","#{File.dirname(__FILE__)}/*.rb"].each{|file| require file }
 
+base_dir = "#{File.dirname(__FILE__)}/../"
+
+ENV['BUNDLE_GEMFILE'] = File.expand_path("#{base_dir}Gemfile")
 STORM_ENV = ENV['DATABASE_ENV'] || 'development'
 VERSION = ENV['VERSION'] || nil
 MIGRATIONS_DIR = './db/migrate'
-
 APP_NAME = Inflector::classify(File.basename(FileUtils.pwd))
 
-FileUtils.mkdir_p(MIGRATIONS_DIR) rescue nil
-ActiveRecord::Base.establish_connection YAML.load_file('config/databases.yml')[DATABASE_ENV]
+require 'bundler/setup'
+Bundler.require(:default)
+Dir["#{base_dir}/*.rb","#{base_dir}/*/*.rb"].each{|file| require file }
+require "#{base_dir}/generators/db/migration_generator"
+require "#{base_dir}/generators/db/db_command"
 
+ActiveRecord::Base.establish_connection YAML.load_file('config/databases.yml')[DATABASE_ENV] rescue nil
 

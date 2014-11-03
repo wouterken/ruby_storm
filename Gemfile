@@ -1,5 +1,3 @@
-# A sample Gemfile
-source "https://rubygems.org"
-
+gem 'pry'
 gem 'jazz_hands'
 gem 'activerecord'

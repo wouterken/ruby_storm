@@ -1,4 +1,4 @@
-class DBCommand
+class Storm::DBCommand
   def self.config
     @config ||= YAML.load_file('./db/databases.yml')[DATABASE_ENV]
   end
