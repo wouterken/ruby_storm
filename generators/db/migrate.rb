@@ -2,6 +2,8 @@ require "./generators/db/migration_generator"
 
 module Db
   class Migrate
-    `rake db:migrate`
+    self.connect
+    ActiveRecord::Migration.verbose = true
+    ActiveRecord::Migrator.migrate MIGRATIONS_DIR, VERSION.to_i
   end
 end

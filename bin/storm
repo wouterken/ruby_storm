@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 module Storm
-  require './application/application'
+  require File.expand_path("../application/application", __FILE__)
 
   def self.perform!(namespace, args=ARGV)
     begin

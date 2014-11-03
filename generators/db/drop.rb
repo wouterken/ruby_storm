@@ -1,7 +1,7 @@
 module Db
-  class Drop
+  class Drop < DBCommand
     def self.start(args)
-      `rake db:drop`
+      ActiveRecord::Base.connection.drop_database self.connect['database']
     end
   end
 end

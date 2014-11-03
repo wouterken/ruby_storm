@@ -1,4 +1,16 @@
-#!/bin/sh
-echo "require './application/application'" >> .pryrc
-bundle exec pry
-rm .pryrc
+#!/usr/bin/env ruby
+require File.expand_path("../application/application", __FILE__)
+
+version = ">= 0"
+
+if ARGV.first
+  str = ARGV.first
+  str = str.dup.force_encoding("BINARY") if str.respond_to? :force_encoding
+  if str =~ /\A_(.*)_\z/ and Gem::Version.correct?($1) then
+    version = $1
+    ARGV.shift
+  end
+end
+
+gem 'pry', version
+load Gem.bin_path('pry', 'pry', version)
