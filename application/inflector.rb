@@ -1,3 +1,5 @@
+require 'thread_safe'
+
 module Inflector
 
   def self.inflections(locale = :en)
@@ -453,7 +455,7 @@ class Inflections
   def plural(rule, replacement)
     @uncountables.delete(rule) if rule.is_a?(String)
     @uncountables.delete(replacement)
-    @plurals.prepend([rule, replacement])
+    @plurals.unshift([rule, replacement])
   end
 
   # Specifies a new singularization rule and its replacement. The rule can
@@ -463,7 +465,7 @@ class Inflections
   def singular(rule, replacement)
     @uncountables.delete(rule) if rule.is_a?(String)
     @uncountables.delete(replacement)
-    @singulars.prepend([rule, replacement])
+    @singulars.unshift([rule, replacement])
   end
 
   # Specifies a new irregular that applies to both pluralization and

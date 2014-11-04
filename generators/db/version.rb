@@ -1,6 +1,7 @@
 module Storm::Db
   class Version < Storm::DBCommand
-    def start(*args)
+    def self.start(*args)
+      self.connect
       puts "Current version: #{::ActiveRecord::Migrator.current_version}"
     end
   end

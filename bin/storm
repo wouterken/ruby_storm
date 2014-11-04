@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby
 module Storm
-  puts "Loading Storm..."
   require File.expand_path("./../../application/application", __FILE__)
+  require File.expand_path("./../../application/inflector", __FILE__)
 
   def self.perform!(namespace, args=ARGV)
     begin
       names = namespace.to_s.split(':')
       generator(names)
       if klass = generator(names)
-        Dir["./*/*.rb"].each{|file| require file } if klass != Storm::Init
+        puts "#{klass} #{args.length > 1 ? :args[1..-1] : ''}"
+        Dir["./*/*.rb"].each{|file| require file } if klass.name != "Storm::Init"
         klass.start(args[1..-1])
       else
         puts "Could not find generator '#{names}'. "
@@ -34,5 +35,4 @@ module Storm
   end
 end
 
-#!/usr/bin/env ruby
 exit Storm::perform!(ARGV[0])

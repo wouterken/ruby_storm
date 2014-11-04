@@ -1,8 +1,8 @@
-require './lib/ruby_storm'
+require './generators/version'
 
 Gem::Specification.new do |s|
   s.name        = 'ruby_storm'
-  s.version     = RubyStorm::VERSION
+  s.version     = Storm::Version.to_s
   s.date        = '2014-11-02'
   s.summary     = "Ruby storm is a stand alone Object Relational Mapper"
   s.description = "Ruby storm is a stand alone Object Relational Mapper that wraps ActiveRecord."

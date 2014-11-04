@@ -1,3 +1,5 @@
+require 'active_record'
+
 module Storm::Db
   class Storm::MigrationGenerator
     def self.next_migration_file_name(args)

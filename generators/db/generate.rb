@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module Storm::Db
   class Generate < Storm::MigrationGenerator
     def self.start(args)
@@ -11,9 +13,10 @@ module Storm::Db
             columns.map do |col|
               col_name, col_type = col.split(":")
               col_type ||= "string"
-              "      t.#{col_type} :#{::Inflector::tableize(col_name)}"
+              "      t.#{col_type} :#{::Inflector::singularize(::Inflector::tableize(col_name))}"
             end,
-       "    end",
+       "      t.timestamps",
+       "     end",
        "  end",
        "end"].flatten
 

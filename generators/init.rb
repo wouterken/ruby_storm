@@ -12,10 +12,10 @@ module Storm
 
       File.open("./#{dir_name}/#{file_name}", "w+") do |f|
         f.puts "\
-  class #{class_name}
-    def self.main(env)
-    end
+class #{class_name}
+  def self.main(env)
   end
+end
   "
       end
 
