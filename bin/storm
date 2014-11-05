@@ -1,11 +1,16 @@
 #!/usr/bin/env ruby
-
+puts '1'
 require 'thread_safe'
+puts '2'
 require 'active_record'
+puts '3'
 
 module Storm
+  puts '4'
   require File.expand_path("./../../application/application", __FILE__)
+  puts '5'
   require File.expand_path("./../../application/inflector", __FILE__)
+  puts '6'
 
   def self.perform!(namespace, args=ARGV)
     begin

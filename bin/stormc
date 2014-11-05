@@ -1,9 +1,2 @@
 #!/usr/bin/env ruby
-
-Signal.trap("INT") { exit 1 }
-require 'bundler/setup'
-
-Bundler.definition.validate_ruby!
-Bundler.load.setup_environment
-path = File.expand_path("./../storm_console", __FILE__)
-Kernel.exec(path)
+Kernel::exec "bundle exec #{File.expand_path("./../storm_console", __FILE__)}"
