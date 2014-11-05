@@ -1,3 +1,4 @@
+
 module Storm::Db
   class Create  < Storm::DBCommand
     def self.start(args)

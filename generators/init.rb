@@ -9,7 +9,12 @@ module Storm
       dir_name = "#{Inflector::underscore(app_name)}"
       FileUtils.mkdir_p(dir_name)
       FileUtils.mkdir_p("./#{dir_name}/#{MIGRATIONS_DIR}") rescue nil
-
+      File.open("./#{dir_name}/Gemfile", "w+") do |f|
+        f.puts "\
+source 'https://rubygems.org'
+gem 'ruby_storm'
+"
+      end
       File.open("./#{dir_name}/#{file_name}", "w+") do |f|
         f.puts "\
 class #{class_name}

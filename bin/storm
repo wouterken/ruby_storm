@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
+
+require 'thread_safe'
+require 'active_record'
+
 module Storm
   require File.expand_path("./../../application/application", __FILE__)
   require File.expand_path("./../../application/inflector", __FILE__)
@@ -8,7 +12,7 @@ module Storm
       names = namespace.to_s.split(':')
       generator(names)
       if klass = generator(names)
-        puts "#{klass} #{args.length > 1 ? :args[1..-1] : ''}"
+        puts "#{klass} #{args.length > 1 ? args[1..-1] : ''}"
         Dir["./*/*.rb"].each{|file| require file } if klass.name != "Storm::Init"
         klass.start(args[1..-1])
       else

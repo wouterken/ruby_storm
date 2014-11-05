@@ -13,6 +13,14 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
+  s.add_runtime_dependency 'pry'
+  s.add_runtime_dependency 'jazz_hands'
+  s.add_runtime_dependency 'awesome_print'
+  s.add_runtime_dependency 'activerecord'
+  s.add_runtime_dependency 'sqlite3'
+  s.add_runtime_dependency 'thread_safe'
+  s.add_runtime_dependency 'bundler'
+
   s.homepage    = 'http://rubygems.org/gems/ruby_storm'
   s.license     = 'MIT'
 end

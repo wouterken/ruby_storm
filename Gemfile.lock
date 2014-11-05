@@ -114,3 +114,4 @@ DEPENDENCIES
   jazz_hands
   pry
   sqlite3
+  thread_safe

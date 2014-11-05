@@ -1,6 +1,5 @@
-require File.expand_path("#{File.dirname(__FILE__)}/inflector")
 require 'jazz_hands'
-require 'pry'
+require 'awesome_print'
 
 JazzHands.colored_prompt = true
 JazzHands.enable_syntax_highlighting_as_you_type!

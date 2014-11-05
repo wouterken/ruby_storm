@@ -1,5 +1,3 @@
-require 'thread_safe'
-
 module Inflector
 
   def self.inflections(locale = :en)
