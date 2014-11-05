@@ -5,4 +5,5 @@ require 'bundler/setup'
 
 Bundler.definition.validate_ruby!
 Bundler.load.setup_environment
-Kernel.exec("./storm_console")
+path = File.expand_path("./../storm_console", __FILE__)
+Kernel.exec(path)
