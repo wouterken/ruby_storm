@@ -9,12 +9,27 @@ module Storm
       dir_name = "#{Inflector::underscore(app_name)}"
       FileUtils.mkdir_p(dir_name)
       FileUtils.mkdir_p("./#{dir_name}/#{MIGRATIONS_DIR}") rescue nil
-      File.open("./#{dir_name}/Gemfile", "w+") do |f|
-        f.puts "\
+      gemfile(dir_name)
+      appfile(dir_name, file_name, class_name)
+      dbfile(dir_name)
+    end
+
+    #
+    # Write project Gemfile
+    #
+    def self.gemfile(dir_name)
+  File.open("./#{dir_name}/Gemfile", "w+") do |f|
+    f.puts "\
 source 'https://rubygems.org'
 gem 'ruby_storm'
 "
       end
+    end
+
+    #
+    # Write app entry point
+    #
+    def self.appfile(dir_name, file_name, class_name)
       File.open("./#{dir_name}/#{file_name}", "w+") do |f|
         f.puts "\
 class #{class_name}
@@ -23,7 +38,12 @@ class #{class_name}
 end
   "
       end
+    end
 
+    #
+    # Write databases.yml
+    #
+    def self.dbfile(dir_name)
       File.open("./#{dir_name}/db/databases.yml", "w+") do |f|
         f.puts "\
 default: &default
@@ -36,8 +56,7 @@ development:
   database: db/development.sqlite3
   "
       end
-
-
     end
   end
 end
+

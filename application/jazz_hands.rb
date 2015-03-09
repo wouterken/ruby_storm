@@ -1,3 +1,6 @@
+##
+#  Jazz Hands for console and debugging
+##
 require 'jazz_hands'
 require 'awesome_print'
 
@@ -20,13 +23,14 @@ end
 # libraries (GNU, rb-readline) correctly ignore color codes when
 # calculating line length.
 
+name = Storm::APP_NAME
+
 color = -> { Pry.color && JazzHands.colored_prompt }
 red  = ->(text) { color[] ? "\001\e[0;31m\002#{text}\001\e[0m\002" : text.to_s }
 blue = ->(text) { color[] ? "\001\e[0;34m\002#{text}\001\e[0m\002" : text.to_s }
 bold = ->(text) { color[] ? "\001\e[1m\002#{text}\001\e[0m\002"    : text.to_s }
 
 separator = -> { red.(JazzHands.prompt_separator) }
-name = defined?(APP_NAME) ? APP_NAME : Inflector::classify(File.basename(FileUtils.pwd))
 colored_name = -> { blue.(name) }
 
 line = ->(pry) { "[#{bold.(pry.input_array.size)}] " }

@@ -1,3 +1,5 @@
+require "#{Storm::STORM_DIR}/generators/db/migration_generator"
+
 module Storm::Db
   class Modify < Storm::MigrationGenerator
     def self.start(args)

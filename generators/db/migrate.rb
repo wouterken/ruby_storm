@@ -1,3 +1,5 @@
+require "#{Storm::STORM_DIR}/generators/db/db_command"
+
 module Storm::Db
   class Migrate < Storm::DBCommand
     def self.start *_

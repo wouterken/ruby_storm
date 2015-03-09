@@ -1,4 +1,5 @@
 require 'fileutils'
+require "#{Storm::STORM_DIR}/generators/db/migration_generator"
 
 module Storm::Db
   class Generate < Storm::MigrationGenerator

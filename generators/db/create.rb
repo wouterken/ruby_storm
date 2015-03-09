@@ -1,3 +1,4 @@
+require "#{Storm::STORM_DIR}/generators/db/db_command"
 
 module Storm::Db
   class Create  < Storm::DBCommand

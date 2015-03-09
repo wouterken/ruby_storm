@@ -1,3 +1,8 @@
+##
+# This Inflector code is an extract from Rails :: ActiveSupport
+# https://github.com/rails/rails/tree/master/activesupport
+#
+##
 module Inflector
 
   def self.inflections(locale = :en)

@@ -1,11 +1,8 @@
 module Storm
   class Version
-    def self.start(*args)
-      "#{self}"
+    def self.to_s(*args)
+      "0.0.2"
     end
-
-    def self.to_s
-      "0.0.1"
-    end
+    alias_method :start, :to_s
   end
 end
