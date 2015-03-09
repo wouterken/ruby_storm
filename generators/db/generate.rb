@@ -16,7 +16,7 @@ module Storm::Db
               col_type ||= "string"
               "      t.#{col_type} :#{::Inflector::singularize(::Inflector::tableize(col_name))}"
             end,
-       "      t.timestamps",
+       "      t.timestamps(null: false)",
        "     end",
        "  end",
        "end"].flatten

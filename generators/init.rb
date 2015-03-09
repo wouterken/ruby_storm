@@ -33,7 +33,7 @@ gem 'ruby_storm'
       File.open("./#{dir_name}/#{file_name}", "w+") do |f|
         f.puts "\
 class #{class_name}
-  def self.main(env)
+  def self.main(env, args)
   end
 end
   "

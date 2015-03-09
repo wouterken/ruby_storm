@@ -11,11 +11,11 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = ['stormc', 'storm']
+  s.executables   = ['storm']
 
-  s.add_runtime_dependency 'pry', '~> 0.9'
-  s.add_runtime_dependency 'jazz_hands', '~> 0.5'
-  s.add_runtime_dependency 'awesome_print', '~> 1.0'
+  s.add_runtime_dependency 'pry', '~> 0.10'
+  s.add_runtime_dependency 'pry-byebug', '~> 3.1'
+  s.add_runtime_dependency 'awesome_print', '~> 1.6'
   s.add_runtime_dependency 'activerecord', '~> 4.1'
   s.add_runtime_dependency 'sqlite3', '~> 1.3'
   s.add_runtime_dependency 'thread_safe', '~> 0.3'

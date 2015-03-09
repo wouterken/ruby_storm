@@ -1,4 +1,4 @@
-require "#{Storm::STORM_DIR}/generators/db/db_command"
+require_relative "db_command"
 
 module Storm::Db
   class Version < Storm::DBCommand
