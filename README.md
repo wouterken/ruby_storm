@@ -1,4 +1,4 @@
-[![Ruby Storm](https://img.shields.io/badge/Ruby Storm-Ruby%20Stand%20alone%20object%20relational%20mapper-blue.svg)](Ruby Storm)
+ [![Ruby Storm](https://img.shields.io/badge/Ruby Storm-Ruby%20Stand%20alone%20object%20relational%20mapper-blue.svg)](Ruby Storm)
 [![Gem Version](https://badge.fury.io/rb/ruby_storm.svg)](http://badge.fury.io/rb/ruby_storm)
 [![Downloads](https://img.shields.io/gem/dt/ruby_storm/stable.svg)](https://img.shields.io/gem/dt/ruby_storm)
 [![Inline docs](http://inch-ci.org/github/wouterken/ruby_storm.svg?branch=master)](http://inch-ci.org/github/wouterken/ruby_storm)
@@ -23,6 +23,17 @@ gem install ruby_storm
 storm init my_new_project
 cd my_new_project
 ````
+
+* You can edit the ./db/database.yml file to use alternate DB configurations. Read the [ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) documentation for more details.
+
+* DB create/drop commands
+
+
+````
+storm db:create
+storm db:drop
+````
+
 * Generating a new model (and migration in a project)
 
 ````
