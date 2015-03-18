@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.executables   = ['storm']
 
   s.add_runtime_dependency 'pry', '~> 0.10'
-  s.add_runtime_dependency 'pry-byebug', '~> 3.1'
   s.add_runtime_dependency 'awesome_print', '~> 1.6'
   s.add_runtime_dependency 'activerecord', '~> 4.1'
   s.add_runtime_dependency 'sqlite3', '~> 1.3'

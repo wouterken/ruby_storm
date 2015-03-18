@@ -25,6 +25,7 @@ module Storm
       begin
         require 'pry'
         Pry.color = true
+        Pry.config.print = proc { |output, value| output.puts "=> #{value.ai}" }
         load Gem.bin_path('pry', 'pry')
       rescue Exception => e
         if @@reload
