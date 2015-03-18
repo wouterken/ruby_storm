@@ -3,10 +3,11 @@ require 'fileutils'
 module Storm
   class Init
     def self.start(args)
-      app_name = args[0]
+      app_name   = args[0]
       class_name = Inflector::classify(app_name)
-      file_name = "#{Inflector::underscore(app_name)}.rb"
-      dir_name = "#{Inflector::underscore(app_name)}"
+      dir_name   = Inflector::underscore(app_name)
+      file_name  = "#{Inflector::underscore(app_name)}.rb"
+
       FileUtils.mkdir_p(dir_name)
       FileUtils.mkdir_p("./#{dir_name}/#{MIGRATIONS_DIR}") rescue nil
       gemfile(dir_name)
@@ -41,10 +42,10 @@ end
     end
 
     #
-    # Write databases.yml
+    # Write database.yml
     #
     def self.dbfile(dir_name)
-      File.open("./#{dir_name}/db/databases.yml", "w+") do |f|
+      File.open("./#{dir_name}/db/database.yml", "w+") do |f|
         f.puts "\
 default: &default
   adapter: sqlite3

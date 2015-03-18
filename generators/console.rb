@@ -7,20 +7,8 @@ module Storm
     end
 
     def self.start(*args)
-      reload_proc = proc{ Storm::Console.start(*args) }
-
-      require 'thread_safe'
-      require 'active_record'
-      require "awesome_print"
-      require 'bundler'
-
-      ::Bundler.require(:default, :development)
-      Dir["./**/*.rb"].each{|file| next if /db\/migrate/ =~ file; require file }
-
-      require File.expand_path("./../../application/inflector", __FILE__)
-      require File.expand_path("./../../application/application", __FILE__)
-
-      ActiveRecord::Base.establish_connection YAML.load_file('./db/databases.yml')[Storm::STORM_ENV] rescue nil
+      Storm.load_environment
+      ActiveRecord::Base.establish_connection YAML.load_file('./db/database.yml')[Storm::STORM_ENV]
       ARGV.clear
       begin
         require 'pry'
@@ -32,7 +20,6 @@ module Storm
           @@reload = false
           self.start(*args)
         else
-          puts e
           require 'irb'
           ::IRB.start
         end

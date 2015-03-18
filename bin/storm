@@ -3,7 +3,7 @@ require 'thread_safe'
 
 module Storm
 
-  require File.expand_path("./../../application/inflector", __FILE__)
+  require File.expand_path("./../../vendor/inflector", __FILE__)
   require File.expand_path("./../../application/application", __FILE__)
 
   def self.perform!(namespace, args=ARGV)
@@ -30,12 +30,21 @@ module Storm
     return 0
   end
 
+  def self.load_environment
+    require 'thread_safe'
+    require 'active_record'
+    require "awesome_print"
+    require 'bundler'
+    ::Bundler.require(:default, :development)
+    Dir["./**/*.rb"].each{|file| next if /db\/migrate/ =~ file; require file }
+  end
+
   def self.generator(names)
     generators_and_paths = names.map{|name|
       [name.capitalize,name.downcase]
     }
 
-    klass = "::Storm::"+generators_and_paths.map(&:first).join("::")
+    klass = ["","Storm",generators_and_paths.flat_map(&:first)].flatten.join("::")
     path = File.expand_path("./../../generators/#{generators_and_paths.map(&:last).join("/")}.rb", __FILE__)
     if File.exists?(path)
       require path
