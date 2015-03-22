@@ -7,7 +7,6 @@ module Storm
     end
 
     def self.start(*args)
-      Storm.load_environment
       ActiveRecord::Base.establish_connection YAML.load_file('./db/database.yml')[Storm::STORM_ENV]
       ARGV.clear
       begin

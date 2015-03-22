@@ -12,11 +12,8 @@ module Storm
       generator(names)
 
       if klass = generator(names)
-        Dir["./*/*.rb"].each{|file| require file } unless [
+        Storm.load_environment unless [
           "Storm::Init",
-          "Storm::Console",
-          "Storm::Start",
-          "Storm::App",
           "Storm::Version"
         ].include? klass.name
         klass.start(args[1..-1])
@@ -37,7 +34,7 @@ module Storm
     require "awesome_print"
     require 'bundler'
     ::Bundler.require(:default, :development)
-    Dir["./**/*.rb"].each{|file| next if /db\/migrate/ =~ file; require file }
+    Dir["./**/*.rb"].each{|file| next if /db\// =~ file; require file }
   end
 
   def self.generator(names)
