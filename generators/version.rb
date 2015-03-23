@@ -1,7 +1,7 @@
 module Storm
   class Version
     def self.to_s(*args)
-      "0.0.12"
+      "0.0.13"
     end
 
     def self.start(*args)

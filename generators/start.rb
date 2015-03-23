@@ -3,7 +3,7 @@ require 'fileutils'
 module Storm
   class Start
     def self.start(args)
-
+      Storm::connect
       project_name = File.basename(Dir.pwd)
       puts "Loading project [#{project_name}]"
 

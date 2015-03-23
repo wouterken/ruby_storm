@@ -29,12 +29,22 @@ module Storm
 
   def self.load_environment
     puts "Loading storm environment"
-    require 'thread_safe'
     require 'active_record'
-    require "awesome_print"
     require 'bundler'
+    require 'awesome_print'
     ::Bundler.require(:default, :development)
     Dir["./**/*.rb"].each{|file| next if /db\// =~ file; require file }
+  end
+
+  def self.connect
+    ActiveRecord::Base.establish_connection YAML.load_file('./db/database.yml')[Storm::STORM_ENV]
+    begin
+      require 'pry'
+      Pry.color = true
+      Pry.config.print = proc { |output, value| output.puts "=> #{value.ai}" }
+    rescue Exception => e
+      puts e
+    end
   end
 
   def self.generator(names)

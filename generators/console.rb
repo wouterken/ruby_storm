@@ -7,14 +7,11 @@ module Storm
     end
 
     def self.start(*args)
-      ActiveRecord::Base.establish_connection YAML.load_file('./db/database.yml')[Storm::STORM_ENV]
+      Storm::connect
       ARGV.clear
       begin
-        require 'pry'
-        Pry.color = true
-        Pry.config.print = proc { |output, value| output.puts "=> #{value.ai}" }
         load Gem.bin_path('pry', 'pry')
-      rescue Exception => e
+      rescue Exception
         if @@reload
           @@reload = false
           self.start(*args)
