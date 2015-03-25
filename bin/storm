@@ -33,6 +33,7 @@ module Storm
     require 'bundler'
     require 'awesome_print'
     ::Bundler.require(:default, :development)
+    Dir["./*.rb"].each{|file| next if /db\// =~ file; require file }
     Dir["./**/*.rb"].each{|file| next if /db\// =~ file; require file }
   end
 
