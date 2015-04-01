@@ -3,7 +3,7 @@ class Storm::DBCommand
   require 'yaml'
 
   def self.config
-    @config ||= ::YAML.load_file('./db/database.yml')[Storm::STORM_ENV]
+    @config ||= Storm::db_config
   end
 
   def self.postgres?
